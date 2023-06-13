@@ -1,0 +1,1 @@
+This directory contains introductory projects on I/O redirection. Detail explanation of the various projects will come soon.
