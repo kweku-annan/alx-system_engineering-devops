@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# Displays 'Best School' using 'until loop'
-count=0
-until [$count -ge 10];
-do
-	echo "Best School"
-done
