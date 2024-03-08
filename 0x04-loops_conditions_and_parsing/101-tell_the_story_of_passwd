@@ -4,7 +4,7 @@
 
 exec 3< /etc/passwd
 
-while IFS=':' read -ra input_array <<< line <&3;
+while IFS=':' read -ra input_array <&3;
 do
 	USERNAME=${input_array[0]}
 	GROUP_ID=${input_array[3]}
@@ -12,11 +12,12 @@ do
 	COMMAND=${input_array[6]}
 	USER_ID=${input_array[2]}
 	PASSWORD=${input_array[1]}
+	USER_ID_INFO=${input_array[4]}
 
 	echo "The user $USERNAME is part of the $GROUP_ID gang, lives in \
 $HOME_DIRECTORY and rides $COMMAND. $USER_ID's place is \
 protected by the passcode $PASSWORD, more info about the user \
-here: $USERNAME"
+here: $USER_ID_INFO"
 done
 
 exec 3<&-
