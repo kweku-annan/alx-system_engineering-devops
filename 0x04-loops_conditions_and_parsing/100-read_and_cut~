@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Displays the content of the file /etc/passwd
+# Displays only: username, user id, and home directory
+
+# Open the file for reading
+exec 3< /etc/passwd
+
+while read -r line <&3;
+do
+	echo "$line" | cut -d ':' -f 1,3,6
+done
+
+# Close the file descriptor
+exec 3<&-
