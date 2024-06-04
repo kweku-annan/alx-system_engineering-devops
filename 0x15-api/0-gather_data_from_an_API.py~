@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+"""Accepts an employee ID and returns information"""
+import requests
+import sys
+
+r = requests.get('https://jsonplaceholder.typicode.com/posts/1')
+print(r)
