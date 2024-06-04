@@ -25,5 +25,8 @@ if __name__ == "__main__":
     filename = "{}.csv".format(userId)
 
     with open(filename, 'w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file,
+                            delimiter=',',
+                            quotechar='"',
+                            quoting=csv.QUOTE_ALL)
         writer.writerows(tasks)
