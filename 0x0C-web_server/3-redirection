@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Configures ubuntu to install nginx
+
+sudo apt-get update
+sudo apt-get -y install nginx
+
+sudo mkdir -p /var/www/html
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+echo "server {
+        listen 80;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name_;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+        location /redirect_me {
+            return 301 https://www.linkedin.com/in/emmanuel-saah;
+        }
+}" > /etc/nginx/sites-available/default
+sudo nginx -t
+sudo service nginx restart
