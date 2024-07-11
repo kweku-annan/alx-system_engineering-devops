@@ -22,6 +22,6 @@ echo "server {
         }
 }" > /etc/nginx/sites-available/default
 
-sudo sed -i '/http {/,/}/!b;/default_type application\/octet-stream;/a\\tadd_header X-Served-By '"$(hostname)"';' /etc/nginx/nginx.conf
+sudo -i '/http {/,/}/!b;/default_type application\/octet-stream;/a\\tadd_header X-Served-By '"$(hostname)"';' /etc/nginx/nginx.conf
 sudo nginx -t
 sudo service nginx restart
