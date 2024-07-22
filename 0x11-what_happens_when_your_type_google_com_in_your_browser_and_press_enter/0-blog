@@ -1,0 +1,51 @@
+What happens when you type google.com in your browser and press Enter
+
+A software engineer needs to understand what exactly goes on behind the scenes when you type a URL into your web browser and hit enter. There is so much complexity involved in this simple operation — ranging from DNS resolution to web server interaction — occurring at multiple layers of technology. In this chapter, we will step through each of these processes.
+
+1. DNS Resolution
+A DNS query is the first process involved. In other words, DNS is like the telephone directory of the internet — it translates user-friendly domain names (like www.google.com) into IP addresses that a computer can understand.
+Query Initiation: On entering the URL, the browser will search for the address in its cache. If it isn’t available, the browser will request the operating system to resolve the domain name.
+Recursive DNS Server: The OS reaches out to a recursive DNS server, typically hosted by your ISP.
+Root Server Interaction: The recursive DNS server forwards a query to a root DNS server, which responds with the relevant TLD (Top-Level Domain) server, like .com.
+TLD Server: The TLD server forwards the query to the authoritative DNS server for google.com.
+Authoritative DNS Server: That server responds with the IP address of www.google.com.
+Response: It sends back the IP address to your browser.
+
+2. TCP/IP
+With the IP address known, your browser has to establish a connection to the server using the TCP/IP protocol suite.
+TCP Handshake: The browser initiates a TCP handshake to the server. There are three steps: SYN, SYN-ACK, and ACK, which in principle allows setting an adequate connection. This is done through IP addressing, where data packets can be directed to their destination.
+
+3. Firewall
+The data packets from the origin pass through many firewalls in the process of reaching their destination. Firewalls represent the network security systems.
+Packet Inspection: They inspect data packets. Any malicious content or intrusion into the system is detected.
+Access Control: They control access. Predefined security rules permit only legitimate traffic.
+
+4. HTTPS/SSL
+For the sake of securing the data transmission, HTTPS, by the use of SSL/TLS encrypts.
+SSL Handshake: The browser and server go through an SSL handshake to create a connection securely. It is done through:
+Cipher Agreement: The method is agreed to be used for encryption.
+Certificate Exchange: The server gives an SSL certificate that is checked by the browser using CA (Certificate Authority).
+Session Keys: Encryption of the data can be done using the secure session keys which have been generated.
+
+5. Load Balancer
+We can use the load balancer to handle heavy loads of traffic in a way that the requests are more than one server.
+Traffic Distribution: The load balancer distributes requests to one of several web servers based on an algorithm such as round-robin or least connections.
+Health Checks: These maintain the health of the servers and ensure that requests do not go to a down or overloaded server.
+
+6. Web Server
+The web server, for example, Apache or Nginx, gets incoming requests and serves static content like HTML, CSS, and JavaScript files.
+Request Handling: It is the work of handling the request for HTTP/HTTPS, fetching static resources from the file system or cache.
+Response Generation: The web server generates the HTTP response and sends it back to the load balancer.
+
+7. Application Server
+In the case of dynamic content, the request will be directed to the application server, which executes the backend code.
+Application Logic: Responsible for business logic processing, interacting with databases, and preparing dynamic content.
+Frameworks: Some widely used frameworks include Node.js, Django, and Spring.
+
+8. Database
+If the data requested exists on a database, the application server will request the database.
+Execution of Query: Run SQL or NoSQL query to retrieve information that was required.
+Retrieving Data: The database server returns the information to the application server to aggregate information together.
+
+Conclusion
+The answer takes the same path — application server to web server, web server to load balancer, and load balancer back to your browser — coming full circle. At last, your browser shows the page after rendering the content. This quite complicated operation is very important for an engineer of software because it brings into play a lot of core ideas involving website creation, web protocols, and some security practices. Understanding these will not only prepare you for technical interviews but also increase your capacity to design and troubleshoot effective web applications.
