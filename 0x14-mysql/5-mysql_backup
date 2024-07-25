@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Creates a dump of all of MySQL databases and an archive file of it
+
+mysqldump -u root -p${1} --all-databases > backup.sql
+
+# Generate the current data in day-month-year format
+DATE=$(date +%d-%m-%Y)
+
+# Create the archive
+tar -czf ${DATE}.tar.gz backup.sql
