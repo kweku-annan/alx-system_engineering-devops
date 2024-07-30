@@ -7,22 +7,24 @@ import sys
 if __name__ == "__main__":
     userId = sys.argv[1]
     user = requests.get('https://jsonplaceholder.typicode.com/users/{}'
-                        .format(userId))
-    name = user.json().get('name')
+                        .format(userId)).json()
 
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    task_data_list = []
+    name = user.get('name')
+    username = user.get('username')
+
+    todos = requests.get('https://jsonplaceholder.typicode.com/todos').json()
+    task_list = []
     data = {}
 
-    for task in todos.json():
+    for task in todos:
         task_data = {}
         if task.get('userId') == int(userId):
             task_data["task"] = task.get('title')
             task_data["completed"] = task.get('completed')
-            task_data["username"] = name
-            task_data_list.append(task_data)
+            task_data["username"] = username
+            task_list.append(task_data)
 
-    data[userId] = task_data_list
+    data[userId] = task_list
 
     file_path = f'{userId}.json'
 
