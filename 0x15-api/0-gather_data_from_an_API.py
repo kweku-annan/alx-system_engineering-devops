@@ -10,7 +10,6 @@ if __name__ == "__main__":
     name = user.json().get('name')
 
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    print(todos.json())
     total_tasks = 0
     completed_tasks = 0
     task_title = ''
